@@ -1,0 +1,41 @@
+{
+  "name": "starwars-services",
+  "version": "1.0.0",
+  "description": "services to provide data to starwars app",
+  "main": "server.js",
+  "scripts": {
+    "app": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src",
+    "build": "babel src -o build/main.bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramakrishna-atluri/starwars-services.git"
+  },
+  "keywords": [
+    "starwars",
+    "services"
+  ],
+  "author": "Ramakrishna.Atluri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramakrishna-atluri/starwars-services/issues"
+  },
+  "homepage": "https://github.com/ramakrishna-atluri/starwars-services#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "eslint": "^6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
+}
