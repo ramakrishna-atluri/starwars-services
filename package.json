@@ -7,7 +7,8 @@
     "app": "node src/server.js",
     "test": "mocha",
     "lint": "eslint src",
-    "build": "babel src -o build/main.bundle.js"
+    "build": "babel src -o build/main.bundle.js",
+    "start": "pm2-runtime start ecosystem.config.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
   "homepage": "https://github.com/ramakrishna-atluri/starwars-services#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "pm2": "^4.2.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
