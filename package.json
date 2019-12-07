@@ -25,6 +25,7 @@
   "homepage": "https://github.com/ramakrishna-atluri/starwars-services#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "helmet": "^3.21.2",
     "winston": "^3.2.1"
   },
   "devDependencies": {
