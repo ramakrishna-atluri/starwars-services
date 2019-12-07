@@ -43,7 +43,9 @@ connection
   .once('open', listen)
 
 function listen () {
-  if (app.get('env') === 'test') return
+  console.log('Received request to start app in env: ' + process.env.NODE_ENV)
+  const env = process.env.NODE_ENV
+  if (env === 'test') return
   app.listen(8080, () => {
     console.log('StarWars Services has started and is listening on port 8080')
   })
@@ -55,3 +57,5 @@ function connect () {
   mongoose.connect('mongodb://candidate:PrototypeRocks123654@ds345028.mlab.com:45028/star-wars', options)
   return mongoose.connection
 }
+
+module.exports = app

@@ -1,7 +1,10 @@
-const { getMovieWithLongestCrawl } = require('../services/AnalyticsService')
+const analyticsService = require('../services/AnalyticsService')
 
-function findLongestCrawl () {
-  return getMovieWithLongestCrawl()
+class AnalyticsController {
+  findLongestCrawl () {
+    return analyticsService.getMovieWithLongestCrawl()
+  }
 }
 
-module.exports = { findLongestCrawl: findLongestCrawl }
+const analyticsController = new AnalyticsController()
+module.exports = analyticsController
