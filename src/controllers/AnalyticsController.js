@@ -1,12 +1,7 @@
+const { getMovieWithLongestCrawl } = require('../services/AnalyticsService')
 
-class AnalyticsController {
-  findLongestCrawl () {
-    return new Promise(function (resolve, reject) {
-      setTimeout(function () {
-        reject(new Error('myMovie - RK'))
-      }, 300)
-    })
-  }
+function findLongestCrawl () {
+  return getMovieWithLongestCrawl()
 }
 
-module.exports = AnalyticsController
+module.exports = { findLongestCrawl: findLongestCrawl }
