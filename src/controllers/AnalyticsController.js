@@ -8,6 +8,10 @@ class AnalyticsController {
   getPersonMostAppeared () {
     return analyticsService.getPersonMostAppeared()
   }
+
+  getSpeciesMostAppeared () {
+    return analyticsService.getSpeciesMostAppeared()
+  }
 }
 
 const analyticsController = new AnalyticsController()
