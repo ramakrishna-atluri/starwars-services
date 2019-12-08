@@ -14,43 +14,38 @@ var PeopleSchema = new Schema({
   mass: { type: String, required: false },
   name: { type: String, required: false },
   skin_color: { type: String, required: false },
-  person: {type: Array, required: false}
+  person: { type: Array, required: false }
 }, { strict: false })
 
 var aggregates = {
   personMostAppeared: [
     {
-        $lookup:
+      $lookup:
            {
-              from: "films",
-              localField: "id",
-              foreignField: "characters",
-              as: "films_appeared"
-          }
-     },{
-        $addFields: {
-         films_appeared_count: { "$size": "$films_appeared" }
-       }
-     }, 
-     {
-         $group : { 
-               _id: "$films_appeared_count",
-                "person" : { $push: "$name" }
-             }
-      },{
-        $addFields: {
-         appeared_count: "$_id"
-       }
-     },
-      { $project : { _id : 0, person : 1, appeared_count: 1 } }
-      ,{
-          $sort: { "_id" : -1 } 
-      },{
-          $limit : 1   
-       },{
-            $unwind: "$person"
+             from: 'films',
+             localField: 'id',
+             foreignField: 'characters',
+             as: 'films_appeared'
            }
-     ]
+    }, {
+      $addFields: {
+        films_appeared_count: { $size: '$films_appeared' }
+      }
+    },
+    {
+      $group: {
+        _id: '$films_appeared_count',
+        people: { $push: { _id: '$_id', name: '$name', films_appeared_count: '$films_appeared_count' } }
+
+      }
+    }, {
+      $sort: { _id: -1 }
+    },
+    {
+      $limit: 1
+    }, { $unwind: '$people' },
+    { $replaceRoot: { newRoot: '$people' } }
+  ]
 }
 
 module.exports = { PeopleSchema: PeopleSchema, PersonAggregates: aggregates }

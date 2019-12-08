@@ -22,12 +22,11 @@ class AnalyticsService {
 
   getPersonMostAppeared () {
     return new Promise((resolve, reject) => {
-      var PeopleModel = mongoose.model('people', PeopleSchema)
+      var PeopleModel = mongoose.model('People', PeopleSchema, 'people')
       PeopleModel.aggregate(PersonAggregates.personMostAppeared, function (err, result) {
         if (err) {
           reject(new Error(err))
         } else {
-          console.log(result)
           if (result.length <= 0) {
             resolve('No Results Found')
           } else {
