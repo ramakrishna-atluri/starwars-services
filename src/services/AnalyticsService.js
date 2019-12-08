@@ -23,7 +23,7 @@ class AnalyticsService {
 
   getPersonMostAppeared () {
     return new Promise((resolve, reject) => {
-      var PeopleModel = mongoose.model('people', PeopleSchema)
+      var PeopleModel = mongoose.model('People', PeopleSchema, 'people')
       PeopleModel.aggregate(PersonAggregates.personMostAppeared, function (err, result) {
         if (err) {
           reject(new Error(err))
