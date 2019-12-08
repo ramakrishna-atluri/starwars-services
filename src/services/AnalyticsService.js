@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const { FilmSchema, FilmAggregates } = require('../models/Films')
 const { PeopleSchema, PersonAggregates } = require('../models/People')
 const { SpeciesSchema, SpeciesAggregates } = require('../models/Species')
+const { VehiclesSchema, VehiclesAggregates } = require('../models/Vehicles')
 
 class AnalyticsService {
   getMovieWithLongestCrawl () {
@@ -41,7 +42,24 @@ class AnalyticsService {
   getSpeciesMostAppeared () {
     return new Promise((resolve, reject) => {
       var SpeciesModel = mongoose.model('species', SpeciesSchema)
-      SpeciesModel.aggregate(SpeciesAggregates.findingSpeciesMostAppeared, function (err, result) {
+      SpeciesModel.aggregate(VehiclesAggregates.findingPlanetWithMostPilots, function (err, result) {
+        if (err) {
+          reject(new Error(err))
+        } else {
+          if (result.length <= 0) {
+            resolve('No Results Found')
+          } else {
+            resolve(result)
+          }
+        }
+      })
+    })
+  }
+
+  getPlanetsWithMostPilots () {
+    return new Promise((resolve, reject) => {
+      var VehiclesModel = mongoose.model('vehicles', VehiclesSchema)
+      VehiclesModel.aggregate(SpeciesAggregates.findingSpeciesMostAppeared, function (err, result) {
         if (err) {
           reject(new Error(err))
         } else {

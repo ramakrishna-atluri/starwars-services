@@ -62,4 +62,24 @@ describe('Testing Analystics Controller', function () {
       promise.then(success => { done() }, error => { done(error) })
     })
   })
+
+  describe('Testing Planet with Most Pilots', function () {
+    it('should throw an exception', function (done) {
+      this.sandbox.stub(analyticsService, 'getPlanetsWithMostPilots').callsFake(function () {
+        return new Promise((resolve, reject) => { reject(new Error()) })
+      })
+
+      const promise = analyticsController.getPlanetsWithMostPilots()
+      promise.then(() => { done('Failed, error is not thrown') }, () => { done() })
+    })
+
+    it('should not throw an exception', function (done) {
+      this.sandbox.stub(analyticsService, 'getPlanetsWithMostPilots').callsFake(function () {
+        return new Promise((resolve, reject) => { resolve('success') })
+      })
+
+      const promise = analyticsController.getPlanetsWithMostPilots()
+      promise.then(success => { done() }, error => { done(error) })
+    })
+  })
 })

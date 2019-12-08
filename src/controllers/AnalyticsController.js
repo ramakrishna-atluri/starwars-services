@@ -12,6 +12,10 @@ class AnalyticsController {
   getSpeciesMostAppeared () {
     return analyticsService.getSpeciesMostAppeared()
   }
+
+  getPlanetsWithMostPilots () {
+    return analyticsService.getPlanetsWithMostPilots()
+  }
 }
 
 const analyticsController = new AnalyticsController()
