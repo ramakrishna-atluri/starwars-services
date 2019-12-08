@@ -23,4 +23,11 @@ router.get('/speciesMostAppeared', function (req, res, next) {
   }).catch(next)
 })
 
+// defining the endpoint for planetsWithMostPilots
+router.get('/planetsWithMostPilots', function (req, res, next) {
+  analyticsController.getPlanetsWithMostPilots().then((result) => {
+    res.send(result)
+  }).catch(next)
+})
+
 module.exports = router
