@@ -16,4 +16,11 @@ router.get('/personMostAppeared', function (req, res, next) {
   }).catch(next)
 })
 
+// defining the endpoint for speciesMostAppeared
+router.get('/speciesMostAppeared', function (req, res, next) {
+  analyticsController.getSpeciesMostAppeared().then((result) => {
+    res.send(result)
+  }).catch(next)
+})
+
 module.exports = router
