@@ -1,10 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const { findLongestCrawl } = require('../controllers/AnalyticsController')
+const analyticsController = require('../controllers/AnalyticsController')
 
 // defining the endpoint for longestCrawl
 router.get('/longestCrawl', function (req, res, next) {
-  findLongestCrawl().then((result) => {
+  analyticsController.findLongestCrawl().then((result) => {
+    res.send(result)
+  }).catch(next)
+})
+
+// defining the endpoint for personMostAppeared
+router.get('/personMostAppeared', function (req, res, next) {
+  analyticsController.getPersonMostAppeared().then((result) => {
     res.send(result)
   }).catch(next)
 })
