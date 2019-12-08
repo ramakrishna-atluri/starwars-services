@@ -35,21 +35,16 @@ var aggregates = {
     {
       $group: {
         _id: '$films_appeared_count',
-        person: { $push: '$name' }
+        people: { $push: { _id: '$_id', name: '$name', films_appeared_count: '$films_appeared_count' } }
+
       }
     }, {
-      $addFields: {
-        appeared_count: '$_id'
-      }
-    },
-    { $project: { _id: 0, person: 1, appeared_count: 1 } },
-    {
       $sort: { _id: -1 }
-    }, {
+    },
+    {
       $limit: 1
-    }, {
-      $unwind: '$person'
-    }
+    }, { $unwind: '$people' },
+    { $replaceRoot: { newRoot: '$people' } }
   ]
 }
 
