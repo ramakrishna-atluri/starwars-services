@@ -15,12 +15,24 @@ const express = require('express')
 const router = require('./config/router')
 const helmet = require('helmet')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 // local initialization
 const app = express()
 const connection = connect()
 
 // SECTION 1. Settig up of Routes & Middleware
+
+// Adding helmet
+app.use(helmet())
+
+// Adding CORS
+app.use(cors({
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}))
 app.get('/', (req, res) => {
   res.send('Welcome to Services portal for StarWars!')
 })
@@ -33,9 +45,6 @@ app.use(function (err, req, res, next) {
   logger.error(err.stack)
   res.status(500).send('"The greatest teacher, failure is." - Yoda. <br/> We are working to solve the issue.')
 })
-
-// Adding helmet
-app.use(helmet())
 
 // SECTION 2. Settig up of Mongoose and starting server on success
 connection
@@ -54,7 +63,8 @@ function listen () {
 // Function responsible for Creating the Moongose Connection
 function connect () {
   var options = { keepAlive: 1, useNewUrlParser: true, useUnifiedTopology: true }
-  mongoose.connect('mongodb://candidate:PrototypeRocks123654@ds345028.mlab.com:45028/star-wars', options)
+  const mongoURL = process.env.MONGODB_URL
+  mongoose.connect(mongoURL, options)
   return mongoose.connection
 }
 

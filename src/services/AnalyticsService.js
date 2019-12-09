@@ -42,7 +42,7 @@ class AnalyticsService {
   getSpeciesMostAppeared () {
     return new Promise((resolve, reject) => {
       var SpeciesModel = mongoose.model('species', SpeciesSchema)
-      SpeciesModel.aggregate(VehiclesAggregates.findingPlanetWithMostPilots, function (err, result) {
+      SpeciesModel.aggregate(SpeciesAggregates.findingSpeciesMostAppeared, function (err, result) {
         if (err) {
           reject(new Error(err))
         } else {
@@ -59,7 +59,7 @@ class AnalyticsService {
   getPlanetsWithMostPilots () {
     return new Promise((resolve, reject) => {
       var VehiclesModel = mongoose.model('vehicles', VehiclesSchema)
-      VehiclesModel.aggregate(SpeciesAggregates.findingSpeciesMostAppeared, function (err, result) {
+      VehiclesModel.aggregate(VehiclesAggregates.findingPlanetWithMostPilots, function (err, result) {
         if (err) {
           reject(new Error(err))
         } else {
