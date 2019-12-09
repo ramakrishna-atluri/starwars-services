@@ -10,6 +10,9 @@
     "start": "set NODE_ENV=dev&& node src/server.js",
     "prod": "pm2-runtime start ecosystem.config.js"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ramakrishna-atluri/starwars-services.git"
@@ -25,6 +28,7 @@
   },
   "homepage": "https://github.com/ramakrishna-atluri/starwars-services#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "mongoose": "^5.7.14",

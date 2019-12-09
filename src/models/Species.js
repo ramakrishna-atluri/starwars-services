@@ -23,12 +23,12 @@ var aggregates = {
   findingSpeciesMostAppeared: [
     {
       $lookup:
-              {
-                from: 'films',
-                localField: 'id',
-                foreignField: 'species',
-                as: 'films_appeared'
-              }
+          {
+            from: 'films',
+            localField: 'id',
+            foreignField: 'species',
+            as: 'films_appeared'
+          }
     }, {
       $addFields: {
         films_appeared_count: { $size: '$films_appeared' }

@@ -5,6 +5,7 @@ const analyticsController = require('../controllers/AnalyticsController')
 // defining the endpoint for longestCrawl
 router.get('/longestCrawl', function (req, res, next) {
   analyticsController.findLongestCrawl().then((result) => {
+    res.set('Content-Type', 'text/plain')
     res.send(result)
   }).catch(next)
 })
